@@ -1,0 +1,14 @@
+Package: monzor
+Title: Monzo API access
+Version: 0.0.9
+Author: Ryan Bateman[aut, cre]
+Maintainer: Ryan Bateman <ryan.bateman@gmail.com>
+Description: This package gives easy access to the Monzo API and its methods, as well as some basic data structures for the related data. 
+Depends: R (>= 3.5.0)
+Imports: 
+    httr (>= 1.0.0),
+    jsonlite
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
