@@ -1,6 +1,6 @@
 Package: monzor
 Title: Monzo API access
-Version: 0.0.9
+Version: 0.1.0
 Author: Ryan Bateman [aut, cre]
 Maintainer: Ryan Bateman <ryan.bateman@gmail.com>
 Description: This package gives easy access to the Monzo API and its methods, as well as some basic data structures for the related data. 
