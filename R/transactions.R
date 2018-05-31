@@ -10,7 +10,7 @@ getMonzoTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
     }
-    transactionsRequest <- GET("https://api.monzo.com/transactions", config(token = mtoken), verbose(), query = list(account_id = accountId))
+    transactionsRequest <- GET("https://api.monzo.com/transactions", config(token = mtoken), query = list(account_id = accountId))
     transactionsJson = fromJSON(content(transactionsRequest, type = "text"))
     transactionsJson
 }
