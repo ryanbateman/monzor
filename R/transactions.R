@@ -1,6 +1,6 @@
 #' Retrieving transactions and including items in the feed
 #'
-#' These functions are intended to create and retrieve transactions
+#' Retrieve transactions, defaulting to the first valid account if no account ID is supplied
 #' @param mtoken The Monzo API token
 #' @param accountId The id of the account you're requesting transactions from
 #' @keywords transactions
