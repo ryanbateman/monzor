@@ -14,3 +14,20 @@ getMonzoTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
     transactionsJson = fromJSON(content(transactionsRequest, type = "text"))
     transactionsJson
 }
+
+
+#' Retrieve a specific transaction, defaulting to the first valid account if no account ID is supplied
+#' @param mtoken The Monzo API token
+#' @param accountId The id of the account that you're requesting transactions from
+#' @param transactionId The id of the transaction being requested
+#' @keywords transactions
+#' @import httr jsonlite
+#' @export
+getTransaction <- function(mtoken = getMonzoToken(), accountId = NULL, transactionId = NULL) {
+    if (is.null(accountId)) {
+        accountId <- getDefaultAccountId(mtoken)
+    }
+    transactionRequest <- GET(paste("https://api.monzo.com/transactions/", transactionId, sep = ""), config(token = mtoken), verbose(), query = list(account_id = accountId, "expand[]" = "merchant"))
+                               transactionJson = fromJSON(content(transactionRequest, type = "text"))
+                               transactionJson
+}
