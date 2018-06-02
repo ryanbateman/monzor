@@ -6,7 +6,7 @@
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
-getMonzoTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
+getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
     }
@@ -23,7 +23,7 @@ getMonzoTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
-getMonzoTransaction <- function(mtoken = getMonzoToken(), accountId = NULL, transactionId = NULL, expand = "merchant") {
+getTransaction <- function(mtoken = getMonzoToken(), accountId = NULL, transactionId = NULL, expand = "merchant") {
     stopifnot(is.character(transactionId))
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
