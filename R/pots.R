@@ -19,6 +19,7 @@ getPots <- function(mtoken = getMonzoToken(), accountId = NULL) {
 #' @param mtoken The Monzo API token
 #' @param accountId The source id of the account you're transferring from
 #' @param amount The amount to deposit in the pot
+#' @param potId The id of the pot
 #' @param dedupeId The id required to ensure the deposit is unique
 #' @keywords pots
 #' @import httr jsonlite

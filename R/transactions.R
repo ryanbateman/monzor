@@ -20,6 +20,7 @@ getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
 #' @param mtoken The Monzo API token
 #' @param accountId The id of the account that you're requesting transactions from
 #' @param transactionId The id of the transaction being requested
+#' @param expand A string dictating what should be expanded within the responses. Defaults to 'merchant'
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export

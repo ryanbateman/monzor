@@ -13,6 +13,8 @@ getTransaction(mtoken = getMonzoToken(), accountId = NULL,
 \item{accountId}{The id of the account that you're requesting transactions from}
 
 \item{transactionId}{The id of the transaction being requested}
+
+\item{expand}{A string dictating what should be expanded within the responses. Defaults to 'merchant'}
 }
 \description{
 Retrieve a specific transaction, defaulting to the first valid account if no account ID is supplied
