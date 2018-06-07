@@ -3,14 +3,23 @@
 #' Retrieve transactions, defaulting to the first valid account if no account ID is supplied
 #' @param mtoken The Monzo API token
 #' @param accountId The id of the account you're requesting transactions from
+#' @param before An RFC 3339 encoded-timestamp
+#' @param since An RFC 3339 encoded-timestamp
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
-getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL) {
+getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = NULL, before = NULL) {
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
     }
-    transactionsRequest <- GET("https://api.monzo.com/transactions", config(token = mtoken), query = list(account_id = accountId))
+    querylist <- list(account_id = accountId)
+    if (!is.null(since)) {
+        querylist$since = since
+    }
+    if (!is.null(before)) {
+        querylist$before = before
+    }
+    transactionsRequest <- GET("https://api.monzo.com/transactions", config(token = mtoken), query = querylist)
     transactionsJson = fromJSON(content(transactionsRequest, type = "text"))
     transactionsJson
 }

@@ -4,12 +4,17 @@
 \alias{getTransactions}
 \title{Retrieving transactions and including items in the feed}
 \usage{
-getTransactions(mtoken = getMonzoToken(), accountId = NULL)
+getTransactions(mtoken = getMonzoToken(), accountId = NULL, since = NULL,
+  before = NULL)
 }
 \arguments{
 \item{mtoken}{The Monzo API token}
 
 \item{accountId}{The id of the account you're requesting transactions from}
+
+\item{since}{An RFC 3339 encoded-timestamp}
+
+\item{before}{An RFC 3339 encoded-timestamp}
 }
 \description{
 Retrieve transactions, defaulting to the first valid account if no account ID is supplied
