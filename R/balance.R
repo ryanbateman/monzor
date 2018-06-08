@@ -11,6 +11,6 @@ getBalance <- function(mtoken = getMonzoToken(), accountId = NULL) {
         accountId <- getDefaultAccountId(mtoken)
     }
     balanceRequest <- GET("https://api.monzo.com/balance", config(token = mtoken), query = list(account_id = accountId))
-    balanceJson = fromJSON(content(balanceRequest, type = "text"))
-    balanceJson
+    balance = fromJSON(content(balanceRequest, type = "text"))
+    balance
 }

@@ -8,7 +8,7 @@
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
-getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = NULL, before = NULL) {
+getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = NULL, before = NULL, parse = TRUE) {
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
     }
@@ -20,10 +20,13 @@ getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = 
         querylist$before = before
     }
     transactionsRequest <- GET("https://api.monzo.com/transactions", config(token = mtoken), query = querylist)
-    transactionsJson = fromJSON(content(transactionsRequest, type = "text"))
-    transactionsJson
+    transactions = fromJSON(content(transactionsRequest, type = "text"))
+    if (parse) {
+        transactions <- transactions$transactions
+        transactions <- parseTransactions(transactions)
+    }
+    transactions
 }
-
 
 #' Retrieve a specific transaction, defaulting to the first valid account if no account ID is supplied
 #' @param mtoken The Monzo API token
@@ -33,12 +36,27 @@ getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = 
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
-getTransaction <- function(mtoken = getMonzoToken(), accountId = NULL, transactionId = NULL, expand = "merchant") {
+getTransaction <- function(mtoken = getMonzoToken(), accountId = NULL, transactionId = NULL, expand = "merchant", parse = TRUE) {
     stopifnot(is.character(transactionId))
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
     }
     transactionRequest <- GET(paste("https://api.monzo.com/transactions/", transactionId, sep = ""), config(token = mtoken), query = list(account_id = accountId, "expand[]" = expand))
-                               transactionJson = fromJSON(content(transactionRequest, type = "text"))
-                               transactionJson
+                               transaction = fromJSON(content(transactionRequest, type = "text"))
+                               if (parse) {
+                                   transactions <- transaction$transaction
+                                   transaction <- parseTransactions(transactions)
+                               }
+                               transaction
+}
+
+parseTransactions <- function(transactions = NULL) {
+    transactions$created <- as.POSIXct(transactions$created, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+    transactions$settled <- as.POSIXct(transactions$settled, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+    transactions$updated <- as.POSIXct(transactions$updated, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+
+    transactions$category <- as.factor(transactions$category)
+    transactions$scheme <- as.factor(transactions$scheme)
+
+    transactions
 }
