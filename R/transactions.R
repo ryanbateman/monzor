@@ -8,7 +8,7 @@
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
-getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = NULL, before = NULL, parse = TRUE) {
+getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = NULL, before = NULL, parse = TRUE, expand = NULL) {
     if (is.null(accountId)) {
         accountId <- getDefaultAccountId(mtoken)
     }
@@ -18,6 +18,9 @@ getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = 
     }
     if (!is.null(before)) {
         querylist$before = before
+    }
+    if (!is.null(expand)) {
+        querylist$"expand[]" = "merchant"
     }
     transactionsRequest <- GET("https://api.monzo.com/transactions", config(token = mtoken), query = querylist)
     transactions = fromJSON(content(transactionsRequest, type = "text"))
