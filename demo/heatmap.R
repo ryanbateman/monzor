@@ -2,15 +2,21 @@ library(monzor)
 library(ggmap)
 library(dplyr)
 
+## Get all the transactions, expanding the response to include the merchant transactions
 transactions <- getTransactions(expand = "merchant")
+
+## We're just interested in the locations and amount, so we trim down the data
 locations = transactions$merchant$address
 locations$amount = transactions$amount
 
+## Set a universal map zoom level between Google maps and the Stamen map tile retrieval
 mapsZoom <- 15
 
+## Geocode a location (in this demo, London) to retrieve the bounding box
 googMap <- get_googlemap("London, United Kingdom", zoom = mapsZoom)
 bb <- attr(googMap, "bb")
 
+## Filter the transactions to only be within the bounding box
 locations <- locations %>%
     filter(!is.na(latitude)) %>%
     filter(
@@ -20,7 +26,9 @@ locations <- locations %>%
         longitude > bb$ll.lon,
     )
 
+## Retrieve the map using the bounding box and the stamen map type 'toner lite'
 transactionsMap <- get_stamenmap(bb2bbox(bb), maptype = "toner-lite", zoom = mapsZoom)
+## Draw the density lines, the 'heat' polygons, scale their colour and alpha
 ggmap(transactionsMap) +
     geom_density2d(data = locations,
                    aes(x = longitude, y = latitude), size = 0.1) +
