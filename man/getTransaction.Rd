@@ -15,6 +15,8 @@ getTransaction(mtoken = getMonzoToken(), accountId = NULL,
 \item{transactionId}{The id of the transaction being requested}
 
 \item{expand}{A string dictating what should be expanded within the responses. Defaults to 'merchant'}
+
+\item{parse}{Boolean dictating whether to coerce response into a neater dataframe. Defaults to true}
 }
 \description{
 Retrieve a specific transaction, defaulting to the first valid account if no account ID is supplied

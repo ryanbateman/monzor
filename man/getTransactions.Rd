@@ -15,6 +15,10 @@ getTransactions(mtoken = getMonzoToken(), accountId = NULL, since = NULL,
 \item{since}{An RFC 3339 encoded-timestamp}
 
 \item{before}{An RFC 3339 encoded-timestamp}
+
+\item{parse}{Boolean dictating whether to coerce response into a neater dataframe. Defaults to true}
+
+\item{expand}{A string dictating what should be expanded within the responses. Defaults to null}
 }
 \description{
 Retrieve transactions, defaulting to the first valid account if no account ID is supplied

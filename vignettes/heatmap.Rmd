@@ -1,3 +1,24 @@
+---
+title: "Heatmap"
+author: "Ryan Bateman"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Heatmap demo details
+
+```{r heatmapcode, eval = FALSE}
 library(monzor)
 library(ggmap)
 library(dplyr)
@@ -13,7 +34,7 @@ locations$amount = transactions$amount
 mapsZoom <- 14
 
 ## Geocode a location (in this demo, London) to retrieve the bounding box
-googMap <- get_googlemap("Novoda, London, United Kingdom", zoom = mapsZoom)
+googMap <- get_googlemap("London, United Kingdom", zoom = mapsZoom)
 bb <- attr(googMap, "bb")
 
 ## Filter the transactions to only be within the bounding box
@@ -39,3 +60,4 @@ ggmap(transactionsMap) +
     scale_alpha(range = c(0.2, 0.8), guide = FALSE) +
     geom_point(data = locations,
                aes(x = longitude, y = latitude), size = 0.1)
+```

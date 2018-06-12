@@ -5,6 +5,8 @@
 #' @param accountId The id of the account you're requesting transactions from
 #' @param before An RFC 3339 encoded-timestamp
 #' @param since An RFC 3339 encoded-timestamp
+#' @param expand A string dictating what should be expanded within the responses. Defaults to null
+#' @param parse Boolean dictating whether to coerce response into a neater dataframe. Defaults to true
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
@@ -36,6 +38,7 @@ getTransactions <- function(mtoken = getMonzoToken(), accountId = NULL, since = 
 #' @param accountId The id of the account that you're requesting transactions from
 #' @param transactionId The id of the transaction being requested
 #' @param expand A string dictating what should be expanded within the responses. Defaults to 'merchant'
+#' @param parse Boolean dictating whether to coerce response into a neater dataframe. Defaults to true
 #' @keywords transactions
 #' @import httr jsonlite
 #' @export
