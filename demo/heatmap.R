@@ -10,10 +10,10 @@ locations = transactions$merchant$address
 locations$amount = transactions$amount
 
 ## Set a universal map zoom level between Google maps and the Stamen map tile retrieval
-mapsZoom <- 15
+mapsZoom <- 14
 
 ## Geocode a location (in this demo, London) to retrieve the bounding box
-googMap <- get_googlemap("London, United Kingdom", zoom = mapsZoom)
+googMap <- get_googlemap("Novoda, London, United Kingdom", zoom = mapsZoom)
 bb <- attr(googMap, "bb")
 
 ## Filter the transactions to only be within the bounding box
@@ -36,4 +36,6 @@ ggmap(transactionsMap) +
                    aes(x = longitude, y = latitude, fill = ..level.., alpha = ..level..),
                    size = 0.001, bins = 5, geom = "polygon") +
     scale_fill_gradient(low = "green", high = "red") +
-    scale_alpha(range = c(0, 0.5), guide = FALSE)
+    scale_alpha(range = c(0.2, 0.8), guide = FALSE) +
+    geom_point(data = locations,
+               aes(x = longitude, y = latitude), size = 0.1)

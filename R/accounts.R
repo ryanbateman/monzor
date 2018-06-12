@@ -17,7 +17,7 @@ getAccounts <- function(mtoken = getMonzoToken()) {
 #' @import httr jsonlite
 #' @export
 getDefaultAccountId <- function(mtoken = getMonzoToken()) {
-    accountsResponse <- getAccounts()
+    accountsResponse <- getAccounts(mtoken)
     for (i in nrow(accountsResponse$accounts)) {
         account = accountsResponse$accounts[i,]
         if (!account$closed) {

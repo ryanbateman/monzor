@@ -1,4 +1,3 @@
-library(testthat)
-library(monzor)
+library(httptest)
 
 test_check("monzor")

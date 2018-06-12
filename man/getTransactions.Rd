@@ -5,7 +5,7 @@
 \title{Retrieving transactions and including items in the feed}
 \usage{
 getTransactions(mtoken = getMonzoToken(), accountId = NULL, since = NULL,
-  before = NULL)
+  before = NULL, parse = TRUE, expand = NULL)
 }
 \arguments{
 \item{mtoken}{The Monzo API token}

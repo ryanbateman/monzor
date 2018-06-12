@@ -5,7 +5,7 @@
 \title{Retrieve a specific transaction, defaulting to the first valid account if no account ID is supplied}
 \usage{
 getTransaction(mtoken = getMonzoToken(), accountId = NULL,
-  transactionId = NULL, expand = "merchant")
+  transactionId = NULL, expand = "merchant", parse = TRUE)
 }
 \arguments{
 \item{mtoken}{The Monzo API token}

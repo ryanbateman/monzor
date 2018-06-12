@@ -54,12 +54,15 @@ getTransaction <- function(mtoken = getMonzoToken(), accountId = NULL, transacti
 }
 
 parseTransactions <- function(transactions = NULL) {
-    transactions$created <- as.POSIXct(transactions$created, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
-    transactions$settled <- as.POSIXct(transactions$settled, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
-    transactions$updated <- as.POSIXct(transactions$updated, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+    dateFormat <- "%Y-%m-%dT%H:%M:%S"
+    transactions$created <- as.POSIXct(transactions$created, format = dateFormat, tz = "UTC")
+    transactions$settled <- as.POSIXct(transactions$settled, format = dateFormat, tz = "UTC")
+    transactions$updated <- as.POSIXct(transactions$updated, format = dateFormat, tz = "UTC")
 
     transactions$category <- as.factor(transactions$category)
     transactions$scheme <- as.factor(transactions$scheme)
+    transactions$merchant$id <- as.factor(transactions$merchant$id)
+    transactions$merchant$name <- as.factor(transactions$merchant$name)
 
     transactions
 }
