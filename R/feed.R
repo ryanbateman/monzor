@@ -12,7 +12,6 @@
 #' @keywords feed
 #' @import httr jsonlite
 #' @export
-#'
 addItemToFeed <- function(mtoken = getMonzoToken(), accountId = getDefaultAccountId(), title = NULL, itembody = NULL, image_url = NULL, background_colour = NULL, title_colour = NULL, body_colour = NULL) {
     addFeedItemRequest <- POST("https://api.monzo.com/feed",
                                encode = "form",
