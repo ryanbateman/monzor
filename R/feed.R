@@ -4,7 +4,7 @@
 #' @param mtoken The Monzo API token
 #' @param accountId The id of the account you're requesting transactions from
 #' @param title The title of the item to be displayed in the feed
-#' @param body The body text of the item to be displayed in the feed
+#' @param itembody The body text of the item to be displayed in the feed
 #' @param image_url The URL of the image/icon to be displayed alongside the item in the feed
 #' @param background_colour The hex value of the colour of the background for the feed item
 #' @param title_colour The hex value of the colour of the title text for the feed item

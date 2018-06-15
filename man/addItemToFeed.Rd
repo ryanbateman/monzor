@@ -15,6 +15,8 @@ addItemToFeed(mtoken = getMonzoToken(), accountId = getDefaultAccountId(),
 
 \item{title}{The title of the item to be displayed in the feed}
 
+\item{itembody}{The body text of the item to be displayed in the feed}
+
 \item{image_url}{The URL of the image/icon to be displayed alongside the item in the feed}
 
 \item{background_colour}{The hex value of the colour of the background for the feed item}
@@ -22,8 +24,6 @@ addItemToFeed(mtoken = getMonzoToken(), accountId = getDefaultAccountId(),
 \item{title_colour}{The hex value of the colour of the title text for the feed item}
 
 \item{body_colour}{The hex value of the colour of the body text for the feed item}
-
-\item{body}{The body text of the item to be displayed in the feed}
 }
 \description{
 Add item to feed
