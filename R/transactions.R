@@ -64,8 +64,10 @@ parseTransactions <- function(transactions = NULL) {
 
     transactions$category <- as.factor(transactions$category)
     transactions$scheme <- as.factor(transactions$scheme)
-    transactions$merchant$id <- as.factor(transactions$merchant$id)
-    transactions$merchant$name <- as.factor(transactions$merchant$name)
+    if (is.data.frame(transactions$merchant)) {
+        transactions$merchant$id <- as.factor(transactions$merchant$id)
+        transactions$merchant$name <- as.factor(transactions$merchant$name)
+    }
 
     transactions
 }
